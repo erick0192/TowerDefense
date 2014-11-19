@@ -349,7 +349,7 @@ void CMapView::DisplayCritter(int x, int y)
 		}
 */
 //	ClearGrid();
-
+	//Clearing Grid
 	for (int i = 0; i <= pDoc->width; i++)
 	{
 		for (int j = 0; j <= pDoc->length; j++)
@@ -364,13 +364,20 @@ void CMapView::DisplayCritter(int x, int y)
 		}
 	}
 
+	pDC->SelectObject(sBrush);
+	CPoint p1(x, y), p2(x+20, y+20);
+	CRect r(p1, p2);
+	pDC->Rectangle(r);
+/*
 	int i = x;
 	int j = y;
+
 	for (int count = 0; count <1; count++)
 	{
 		pDC->SelectObject(sBrush);
 		CRect *rectangle = new CRect(i, j, i+20, j+20);
 		rectangles.push_back(rectangle);
+//		delete rectangle;
 	}
 
 	for(int index = 0; index < rectangles.size(); index++)
@@ -378,7 +385,7 @@ void CMapView::DisplayCritter(int x, int y)
 		pDC->Rectangle(rectangles[index]);
 		rectangles[index]->MoveToXY(i, j);
 	}
-
+*/
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 

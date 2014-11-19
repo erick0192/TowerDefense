@@ -44,6 +44,9 @@ END_MESSAGE_MAP()
 
 
 // CMapDoc construction/destruction
+	CritterGroup cg;
+	int sizeEX = 1;			// size example
+	int levelEX = 2;		// level example
 
 CMapDoc::CMapDoc()
 {
@@ -51,16 +54,15 @@ CMapDoc::CMapDoc()
 	pathSetUpStage = true;
 	first = true;	
 	canDraw = true;
+	cg.generateCritters(sizeEX, levelEX);
 //	path = LinkedList();
 }
 
 void CMapDoc::MoveCritter()
 {
-	int sizeEX = 1;			// size example
-	int levelEX = 2;		// level example
+
 	
-	CritterGroup cg;
-	cg.generateCritters(sizeEX, levelEX);
+
 	critters = cg.getCritters();
 
 	Node *n = path.head;
@@ -88,7 +90,7 @@ void CMapDoc::MoveCritter()
 				critterX++;
 			else
 				critterX--;
-
+		for (int w = 0; w < 1000000; w++);
 		pFirstView->DisplayCritter(critterX, critterY);
 	}
 }
