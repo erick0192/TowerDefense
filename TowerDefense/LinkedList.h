@@ -15,13 +15,6 @@ class LinkedList
 public:
 	LinkedList(void);
 	~LinkedList(void);
-/*
-	struct Node {
-		int x;
-		int y;
-		Node *next;
-	};
-*/
 public:
 
     void addValue(int x, int y);
@@ -32,6 +25,4 @@ public:
     Node* head;
 	Node* tail;
 };
-
-
 

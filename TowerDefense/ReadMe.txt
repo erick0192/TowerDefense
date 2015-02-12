@@ -66,13 +66,13 @@ res\Toolbar.bmp
 The application wizard creates one document type and one view:
 
 TowerDefenseDoc.h, TowerDefenseDoc.cpp - the document
-    These files contain your CMapDoc class.  Edit these files to
+    These files contain your CTowerDefenseDoc class.  Edit these files to
     add your special document data and to implement file saving and loading
-    (via CMapDoc::Serialize).
+    (via CTowerDefenseDoc::Serialize).
 
 TowerDefenseView.h, TowerDefenseView.cpp - the view of the document
-    These files contain your CMapView class.
-    CMapView objects are used to view CMapDoc objects.
+    These files contain your CTowerDefenseView class.
+    CTowerDefenseView objects are used to view CTowerDefenseDoc objects.
 
 
 

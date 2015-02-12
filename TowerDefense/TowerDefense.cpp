@@ -101,9 +101,9 @@ BOOL CTowerDefenseApp::InitInstance()
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
-		RUNTIME_CLASS(CMapDoc),
+		RUNTIME_CLASS(CTowerDefenseDoc),
 		RUNTIME_CLASS(CMainFrame),       // main SDI frame window
-		RUNTIME_CLASS(CMapView));
+		RUNTIME_CLASS(CTowerDefenseView));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);

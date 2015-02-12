@@ -1,42 +1,48 @@
 
-// TowerDefenseDoc.h : interface of the CMapDoc class
+// TowerDefenseDoc.h : interface of the CTowerDefenseDoc class
 //
-
-
 #pragma once
+//	<added pragmas>
 #include "LinkedList.h"
-#include "Critter.h"
 #include <vector>
-
-using namespace std;
-
-class CMapDoc : public CDocument
+class Tower;
+class CritterGroup;
+class Critter;
+//#include "CritterGroup.h"
+//#include "Tower.h"
+//	<added pragmas>
+class CTowerDefenseDoc : public CDocument
 {
 protected: // create from serialization only
-	CMapDoc();
-	DECLARE_DYNCREATE(CMapDoc)
+	CTowerDefenseDoc();
+	DECLARE_DYNCREATE(CTowerDefenseDoc)
 
 // Attributes
 public:
 	int variable;
-	/////<Erick Variables>/////
+	/////<Team Variables>/////
 	int width, length;	//width and length of grid
 	bool** grid;		//Multidimensional dynamically allocated array - true=path cell / false=tower cell
 	bool pathSetUpStage;
 	int lastX, lastY;	//lastX and lastY clicked
 	bool first;	
 	bool canDraw;
-	//int critterX;
-	//int critterY;
-	vector<Critter*> critters;
-	void MoveCritter();
+	bool Gaming;
+
+
+	void GameOn();
+	void CallDisplayCritter(int x, int y);
 	LinkedList path;
+	CritterGroup* critterGroup;
+	std::vector<Critter*> critters;
+	std::vector<Tower*> towers;
+	int numberOfCritters;			// size example
+	int level;						// level example
+	clock_t t1, t2;
+	static const long critterDelay = 3000;
+	/////</Team Variables>/////
 
-/////</Erick Variables>/////
-
-// Operations
 public:
-
 // Overrides
 public:
 	virtual BOOL OnNewDocument();
@@ -48,7 +54,7 @@ public:
 
 // Implementation
 public:
-	virtual ~CMapDoc();
+	virtual ~CTowerDefenseDoc();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

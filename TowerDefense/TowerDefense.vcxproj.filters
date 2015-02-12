@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Tower Classes">
+      <UniqueIdentifier>{b09000c3-cc7a-45e3-a079-92847a204502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tower Class">
+      <UniqueIdentifier>{aa604bb8-9923-43e2-ad56-4d1db3704301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Strategy Classes">
+      <UniqueIdentifier>{511bf4b4-6768-4c9f-a289-0168db0724e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Strategy Classes">
+      <UniqueIdentifier>{9302ef42-b8bc-48e8-b946-e44f67f41f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Critter Classes">
+      <UniqueIdentifier>{0e161ba0-5b49-4db0-bbb2-682c7c7e9a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CritterClass">
+      <UniqueIdentifier>{0c226edf-ee85-48ae-be2c-61ed63b7d848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helper Classes">
+      <UniqueIdentifier>{a156dd11-80a7-4527-90bd-c3315a84b47f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper Classes">
+      <UniqueIdentifier>{b568809b-b66f-4f4e-b75b-b462c5b0e5eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,29 +63,50 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedList.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Tower.h">
+      <Filter>Header Files\Tower Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerA.h">
+      <Filter>Header Files\Tower Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerDecorator.h">
+      <Filter>Header Files\Tower Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerBurn.h">
+      <Filter>Header Files\Tower Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerSplash.h">
+      <Filter>Header Files\Tower Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerFreeze.h">
+      <Filter>Header Files\Tower Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Strategy.h">
+      <Filter>Header Files\Strategy Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckNearEnd.h">
+      <Filter>Header Files\Strategy Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckNearTower.h">
+      <Filter>Header Files\Strategy Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckStrongest.h">
+      <Filter>Header Files\Strategy Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckWeakest.h">
+      <Filter>Header Files\Strategy Classes</Filter>
     </ClInclude>
     <ClInclude Include="Critter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Critter Classes</Filter>
     </ClInclude>
     <ClInclude Include="CritterGroup.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Critter Classes</Filter>
     </ClInclude>
-    <ClInclude Include="CritterView.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files\Helper Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Tower.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TowerGroup.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DistanceMethods.h">
+      <Filter>Header Files\Helper Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,29 +125,50 @@
     <ClCompile Include="TowerDefenseView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LinkedList.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Tower.cpp">
+      <Filter>Source Files\Tower Class</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerA.cpp">
+      <Filter>Source Files\Tower Class</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerDecorator.cpp">
+      <Filter>Source Files\Tower Class</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerBurn.cpp">
+      <Filter>Source Files\Tower Class</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerSplash.cpp">
+      <Filter>Source Files\Tower Class</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerFreeze.cpp">
+      <Filter>Source Files\Tower Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Strategy.cpp">
+      <Filter>Source Files\Strategy Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckNearEnd.cpp">
+      <Filter>Source Files\Strategy Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckNearTower.cpp">
+      <Filter>Source Files\Strategy Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckStrongest.cpp">
+      <Filter>Source Files\Strategy Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckWeakest.cpp">
+      <Filter>Source Files\Strategy Classes</Filter>
     </ClCompile>
     <ClCompile Include="Critter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\CritterClass</Filter>
     </ClCompile>
     <ClCompile Include="CritterGroup.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\CritterClass</Filter>
     </ClCompile>
-    <ClCompile Include="CritterView.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files\Helper Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Tower.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TowerGroup.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DistanceMethods.cpp">
+      <Filter>Source Files\Helper Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,16 @@
 #include "LinkedList.h"
 
 
+Node::Node(void)
+{
+}
+
+
+Node::~Node(void)
+{
+}
+
+
 LinkedList::LinkedList(void)
 {
 	head = NULL; 
@@ -12,6 +22,7 @@ LinkedList::LinkedList(void)
 LinkedList::~LinkedList(void)
 {
 }
+
 
 void LinkedList::addValue(int x, int y)
 {
@@ -42,19 +53,4 @@ void LinkedList::addToEnd(int x, int y)
 		tail = n;
 	}
 
-}
-/*
-bool LinkedList::hasNext()
-{
-
-}
-*/
-
-Node::Node(void)
-{
-}
-
-
-Node::~Node(void)
-{
 }

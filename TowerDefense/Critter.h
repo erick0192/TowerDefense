@@ -1,15 +1,23 @@
 #pragma once
 
-// Critter document
 
-class Critter : public CDocument
+#include "towerdefensedoc.h"
+
+//	<added pragmas>
+class Node;
+//#include "LinkedList.h"
+#include "TowerDefenseView.h"
+//	</added pragmas>
+
+class Critter :
+	public CTowerDefenseDoc
 {
-	DECLARE_DYNCREATE(Critter)
+public:
+	Critter(void);
+	~Critter(void);
 
 public:
-	Critter();
-	Critter(int level);
-	~Critter();
+	Critter(int level, Node* head);
 
 	void setReward(int reward);
 	void setHitpoints(int hitpoints);
@@ -26,9 +34,10 @@ public:
 	int getSpeed();
 
 	bool isDead();
+	void releaseCritter();
 	CPoint getPosition();
     void isAttacked(int towerDamage);
-//  void move(int position);
+	bool move();
 
 private:
 	int _reward;
@@ -37,20 +46,8 @@ private:
 	int _speed;
 	int _level;
 	bool _dead;
+	bool released;
+	Node *n;
 	CPoint _position;
-
-#ifndef _WIN32_WCE
-	virtual void Serialize(CArchive& ar);   // overridden for document i/o
-#endif
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-#ifndef _WIN32_WCE
-	virtual void Dump(CDumpContext& dc) const;
-#endif
-#endif
-
-protected:
-	virtual BOOL OnNewDocument();
-
-	DECLARE_MESSAGE_MAP()
 };
+

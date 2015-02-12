@@ -1,34 +1,69 @@
-﻿Build started 2014-11-18 7:18:36 PM.
-     1>Project "C:\github\TowerDefense\TowerDefense\TowerDefense.vcxproj" on node 2 (Build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug\TowerDefense.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\TowerDefense.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt TowerDefenseDoc.cpp
+﻿生成启动时间为 2015/2/6 17:14:27。
+     1>项目“G:\Comp345\TowerDefense\TowerDefense\TowerDefense.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\许宇辰文件\学习\University\software\VS\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\TowerDefense.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         E:\许宇辰文件\学习\University\software\VS\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\TowerDefense.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CheckNearEnd.cpp CheckNearTower.cpp CheckStrongest.cpp CheckWeakest.cpp Critter.cpp CritterGroup.cpp DistanceMethods.cpp LinkedList.cpp MainFrm.cpp Strategy.cpp Tower.cpp TowerA.cpp TowerBurn.cpp TowerDecorator.cpp TowerDefense.cpp TowerDefenseDoc.cpp TowerDefenseView.cpp TowerFreeze.cpp TowerSplash.cpp
+         TowerSplash.cpp
+         TowerFreeze.cpp
+         TowerDefenseView.cpp
          TowerDefenseDoc.cpp
+     1>g:\comp345\towerdefense\towerdefense\towerdefensedoc.cpp(4): warning C4627: “#include "Windows.h"”: 在查找预编译头使用时跳过
+                 将指令添加到“stdafx.h”或重新生成预编译头
+     1>g:\comp345\towerdefense\towerdefense\towerdefensedoc.cpp(93): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\comp345\towerdefense\towerdefense\towerdefensedoc.cpp(98): warning C4018: “<”: 有符号/无符号不匹配
+         TowerDefense.cpp
+         TowerDecorator.cpp
+         TowerBurn.cpp
+         TowerA.cpp
+         Tower.cpp
+         Strategy.cpp
+         MainFrm.cpp
+         LinkedList.cpp
+         DistanceMethods.cpp
+         CritterGroup.cpp
+     1>g:\comp345\towerdefense\towerdefense\crittergroup.cpp(33): warning C4018: “<”: 有符号/无符号不匹配
+         Critter.cpp
+         CheckWeakest.cpp
+     1>g:\comp345\towerdefense\towerdefense\checkweakest.cpp(21): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\comp345\towerdefense\towerdefense\checkweakest.cpp(33): warning C4018: “<”: 有符号/无符号不匹配
+         CheckStrongest.cpp
+     1>g:\comp345\towerdefense\towerdefense\checkstrongest.cpp(21): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\comp345\towerdefense\towerdefense\checkstrongest.cpp(33): warning C4018: “<”: 有符号/无符号不匹配
+         CheckNearTower.cpp
+     1>g:\comp345\towerdefense\towerdefense\checkneartower.cpp(21): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\comp345\towerdefense\towerdefense\checkneartower.cpp(32): warning C4018: “<”: 有符号/无符号不匹配
+         CheckNearEnd.cpp
+     1>g:\comp345\towerdefense\towerdefense\checknearend.cpp(20): warning C4018: “<”: 有符号/无符号不匹配
+     1>g:\comp345\towerdefense\towerdefense\checknearend.cpp(31): warning C4018: “<”: 有符号/无符号不匹配
+         正在生成代码...
        ResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files\Windows Kits\8.0\bin\x86\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /l"0x0409" /IDebug\ /nologo /fo"Debug\TowerDefense.res" TowerDefense.rc 
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\github\TowerDefense\Debug\TowerDefense.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"C:\github\TowerDefense\Debug\TowerDefense.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\github\TowerDefense\Debug\TowerDefense.lib" /MACHINE:X86 Debug\TowerDefense.res
+         E:\许宇辰文件\学习\University\software\VS\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\Comp345\TowerDefense\Debug\TowerDefense.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"E:\许宇辰文件\学习\University\software\VS\Microsoft Visual Studio 11.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"G:\Comp345\TowerDefense\Debug\TowerDefense.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\Comp345\TowerDefense\Debug\TowerDefense.lib" /MACHINE:X86 Debug\TowerDefense.res
+         Debug\CheckNearEnd.obj
+         Debug\CheckNearTower.obj
+         Debug\CheckStrongest.obj
+         Debug\CheckWeakest.obj
          Debug\Critter.obj
          Debug\CritterGroup.obj
-         Debug\CritterView.obj
+         Debug\DistanceMethods.obj
          Debug\LinkedList.obj
          Debug\MainFrm.obj
-         Debug\Player.obj
          Debug\stdafx.obj
+         Debug\Strategy.obj
          Debug\Tower.obj
+         Debug\TowerA.obj
+         Debug\TowerBurn.obj
+         Debug\TowerDecorator.obj
          Debug\TowerDefense.obj
          Debug\TowerDefenseDoc.obj
          Debug\TowerDefenseView.obj
-         Debug\TowerGroup.obj
-         Debug\TowerView.obj
-         TowerDefense.vcxproj -> C:\github\TowerDefense\Debug\TowerDefense.exe
-       FinalizeBuildStatus:
-         Deleting file "Debug\TowerDefense.unsuccessfulbuild".
-         Touching "Debug\TowerDefense.lastbuildstate".
-     1>Done Building Project "C:\github\TowerDefense\TowerDefense\TowerDefense.vcxproj" (Build target(s)).
+         Debug\TowerFreeze.obj
+         Debug\TowerSplash.obj
+         TowerDefense.vcxproj -> G:\Comp345\TowerDefense\Debug\TowerDefense.exe
+     1>已完成生成项目“G:\Comp345\TowerDefense\TowerDefense\TowerDefense.vcxproj”(Build 个目标)的操作。
 
-Build succeeded.
+生成成功。
 
-Time Elapsed 00:00:02.12
+已用时间 00:00:50.90

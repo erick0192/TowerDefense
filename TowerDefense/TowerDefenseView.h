@@ -1,24 +1,24 @@
 
-// TowerDefenseView.h : interface of the CMapView class
+// TowerDefenseView.h : interface of the CTowerDefenseView class
 //
 
 #pragma once
 
 
-class CMapView : public CView
+class CTowerDefenseView : public CView
 {
 protected: // create from serialization only
-	CMapView();
-	DECLARE_DYNCREATE(CMapView)
+	CTowerDefenseView();
+	DECLARE_DYNCREATE(CTowerDefenseView)
 
 // Attributes
 public:
-	CMapDoc* GetDocument() const;
+	CTowerDefenseDoc* GetDocument() const;
 
 // Operations
+	//<Team defined functions>
 public:
-	//<Erick defined functions>
-public:
+	char towerType;
 	void clearSuggestion(CPoint p1);
 	void clearInitSuggestions();
 	void setSuggestions(CPoint* sU, CPoint* sD, CPoint* sL, CPoint* sR, CPoint p1);
@@ -28,11 +28,9 @@ public:
 	void DisplayCritter(int x, int y);
 	bool positioningTower;
 	void ClearGrid();
-//	virtual CMapView* GetNextView(POSITION& rPosition) const;
-	//</Erick defined functions>
-	
-private:
-	vector<CRect*> rectangles;
+	void RedrawGame();
+	//</Team defined functions>
+
 // Overrides
 public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
@@ -44,7 +42,7 @@ protected:
 
 // Implementation
 public:
-	virtual ~CMapView();
+	virtual ~CTowerDefenseView();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -59,12 +57,18 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnBnClicked_12x6();
 	afx_msg void OnBnClicked_10x4();
-	afx_msg void OnBnClicked_SubmitMap();
+	afx_msg void OnBnClicked_Submit();
+	afx_msg void OnBnClicked_BeginGame();
+	afx_msg void OnBnClicked_BuyTowerA();
+	afx_msg void OnBnClicked_UpgradeA();
+	afx_msg void OnBnClicked_TowerB();
+	afx_msg void OnBnClicked_UpgradeB();
 	afx_msg void OnBnClicked_TowerC();
+	afx_msg void OnBnClicked_UpgradeC();
 };
 
 #ifndef _DEBUG  // debug version in TowerDefenseView.cpp
-inline CMapDoc* CMapView::GetDocument() const
-   { return reinterpret_cast<CMapDoc*>(m_pDocument); }
+inline CTowerDefenseDoc* CTowerDefenseView::GetDocument() const
+   { return reinterpret_cast<CTowerDefenseDoc*>(m_pDocument); }
 #endif
 

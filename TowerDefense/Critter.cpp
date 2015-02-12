@@ -1,19 +1,19 @@
-// Critter.cpp : implementation file
-//
-
 #include "stdafx.h"
-#include "TowerDefense.h"
 #include "Critter.h"
-#include "CritterView.h"
 
 
-// Critter
 
-IMPLEMENT_DYNCREATE(Critter, CDocument)
+Critter::Critter(void)
+{
+}
 
-Critter::Critter() {}
 
-Critter::Critter(int level)
+Critter::~Critter(void)
+{
+}
+
+
+Critter::Critter(int level, Node* head)
 {
 	_level = level;
 	_reward = level * 25;
@@ -22,9 +22,12 @@ Critter::Critter(int level)
 	_position = 0;
 	_hitpoints = level * 50;
 	_dead = false;
+	n = head;
+	released = false;
+	_position.x = 0;
+	_position.y = n->y;
 }
 
-Critter::~Critter() {}
 
 void Critter::setLevel(int level)
 {
@@ -99,62 +102,38 @@ CPoint Critter::getPosition()
 void Critter::isAttacked(int towerDamage)
 {
 	_hitpoints = _hitpoints - towerDamage;
-
-	// Notify()
-	UpdateAllViews(NULL);
 }
 
-/*************************************************
-void Critter::move(int position)
+void Critter::releaseCritter()
 {
-	// TO DO
-}
-*************************************************/
-
-
-
-BOOL Critter::OnNewDocument()
-{
-	if (!CDocument::OnNewDocument())
-		return FALSE;
-	return TRUE;
+	released = true;
 }
 
-BEGIN_MESSAGE_MAP(Critter, CDocument)
-END_MESSAGE_MAP()
-
-
-// Critter diagnostics
-
-#ifdef _DEBUG
-void Critter::AssertValid() const
+bool Critter::move()
 {
-	CDocument::AssertValid();
-}
-
-#ifndef _WIN32_WCE
-void Critter::Dump(CDumpContext& dc) const
-{
-	CDocument::Dump(dc);
-}
-#endif
-#endif //_DEBUG
-
-#ifndef _WIN32_WCE
-// Critter serialization
-
-void Critter::Serialize(CArchive& ar)
-{
-	if (ar.IsStoring())
+	if(released)
 	{
-		// TODO: add storing code here
+		POSITION pos = GetFirstViewPosition(); 
+		CTowerDefenseView* pFirstView = (CTowerDefenseView*)GetNextView(pos);
+	 
+	
+		if( (n != NULL)&&(!isDead()) ){
+			if((_position.x == n->x)&&(_position.y == n->y))
+				n = n->next;
+			else if (_position.x == n->x)
+				if(n->y > _position.y)
+					_position.y+=_speed;
+				else
+					_position.y-=_speed;
+			else
+				if(n->x > _position.x)
+					_position.x+=_speed;
+				else
+					_position.x-=_speed;
+			return true;
+	//		CTowerDefenseDoc::CallDisplayCritter((int)_position.x, (int)_position.y);
+		}
+		return false;
 	}
-	else
-	{
-		// TODO: add loading code here
-	}
+	return false;
 }
-#endif
-
-
-// Critter commands

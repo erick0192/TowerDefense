@@ -1,6 +1,9 @@
 
-// TowerDefenseDoc.cpp : implementation of the CMapDoc class
+// TowerDefenseDoc.cpp : implementation of the CTowerDefenseDoc class
 //
+#include "Windows.h"
+#include "afxwin.h"
+
 #include "stdafx.h"
 // SHARED_HANDLERS can be defined in an ATL project implementing preview, thumbnail
 // and search filter handlers and allows sharing of document code with that project.
@@ -9,112 +12,45 @@
 #endif
 
 #include "TowerDefenseDoc.h"
-#include "TowerDefenseView.h"
-#include "LinkedList.h"
-#include <propkey.h>
 
-#include "Critter.h"
-#include "CritterGroup.h"
+#include <propkey.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-// CMapDoc
 
-IMPLEMENT_DYNCREATE(CMapDoc, CDocument)
+//	<added pragmas>
+#include "CritterGroup.h"
+#include "TowerA.h"
+//	<added pragmas>
 
-BEGIN_MESSAGE_MAP(CMapDoc, CDocument)
+// CTowerDefenseDoc
+
+IMPLEMENT_DYNCREATE(CTowerDefenseDoc, CDocument)
+
+BEGIN_MESSAGE_MAP(CTowerDefenseDoc, CDocument)
 END_MESSAGE_MAP()
-/*
-	/////<Erick Variables>/////
-	CBrush tBrush(RGB(0, 0, 255));
-	CBrush sBrush(RGB(0, 255, 0));
-	CBrush pBrush(RGB(255, 0, 0));
-
-	int width, length;	//width and length of grid
-	bool** grid;		//Multidimensional dynamically allocated array - true=path cell / false=tower cell
-	bool pathSetUpStage = true;
-	int lastX, lastY;	//lastX and lastY clicked
-	bool first = true;	
-	bool canDraw = true;
-/////</Erick Variables>/////
-
-	*/
 
 
-// CMapDoc construction/destruction
-	CritterGroup cg;
-	int sizeEX = 1;			// size example
-	int levelEX = 2;		// level example
+// CTowerDefenseDoc construction/destruction
 
-CMapDoc::CMapDoc()
+CTowerDefenseDoc::CTowerDefenseDoc()
 {
-	// TODO: add one-time construction code here
+	critterGroup = new CritterGroup();
 	pathSetUpStage = true;
 	first = true;	
 	canDraw = true;
-	cg.generateCritters(sizeEX, levelEX);
-//	path = LinkedList();
+	Gaming = false;
+	numberOfCritters = 5;
+	level = 1;
 }
 
-void CMapDoc::MoveCritter()
-{
-
-	
-
-	critters = cg.getCritters();
-
-	Node *n = path.head;
-
-	CPoint p(0, n->y);
-	critters[0]->setPosition(p);
-	
-	int critterX = static_cast<int>(critters[0]->getPosition().x);
-	int critterY = static_cast<int>(critters[0]->getPosition().y);
-
-	POSITION pos = GetFirstViewPosition(); 
-	CMapView* pFirstView = (CMapView*)GetNextView(pos);
-	 
-
-	while(n != NULL){
-		if((critterX == n->x)&&(critterY == n->y))
-			n = n->next;
-		else if (critterX == n->x)
-			if(n->y > critterY)
-				critterY++;
-			else
-				critterY--;
-		else
-			if(n->x > critterX)
-				critterX++;
-			else
-				critterX--;
-		for (int w = 0; w < 1000000; w++);
-		pFirstView->DisplayCritter(critterX, critterY);
-	}
-}
-
-/*
-void CMapDoc::MoveCritter()
-{
-	critterY = 340;
-
-	POSITION pos = GetFirstViewPosition(); 
-	CMapView* pFirstView = (CMapView*)GetNextView(pos);
-	 
-
-	for ( critterX = 0; critterX < ((width+1)*100); critterX++)
-		pFirstView->DisplayCritter();
-
-}
-*/
-
-CMapDoc::~CMapDoc()
+CTowerDefenseDoc::~CTowerDefenseDoc()
 {
 }
 
-BOOL CMapDoc::OnNewDocument()
+BOOL CTowerDefenseDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
@@ -125,12 +61,69 @@ BOOL CMapDoc::OnNewDocument()
 	return TRUE;
 }
 
+void CTowerDefenseDoc::GameOn()
+{
+
+	POSITION pos = GetFirstViewPosition(); 
+	CTowerDefenseView* pFirstView = (CTowerDefenseView*)GetNextView(pos);
+
+	critterGroup->addStartingNode(path.head);
+	critterGroup->generateCritters(numberOfCritters, level);
+	critters = critterGroup->getCritters();
+
+	t1 = clock();
+	int critterQueueIndex = 0;
+
+//	pFirstView->DisplayCritter(100,100);
+
+	while(!critterGroup->areAllDead())
+	{
+		t2 = clock();
+		
+		if( ( (t2 - t1) >= critterDelay)&&(critterQueueIndex < numberOfCritters) )
+		{
+			critters[critterQueueIndex]->releaseCritter();
+			critterQueueIndex++;
+			t1 = t2;
+		}
+
+		pFirstView->RedrawGame();
 
 
+		for (int i = 0; i < critters.size(); i++)
+		{
+			if(critters[i]->move())
+				pFirstView->DisplayCritter(critters[i]->getPosition().x, critters[i]->getPosition().y);
+		}
+		for (int i = 0; i < towers.size(); i++)
+		{
+			int position = towers[i]->executeStrategy(critters);
+			if(position>1)
+				towers[i]->attack(critters[position]);
+		}
 
-// CMapDoc serialization
+		// Displays the hitpoints of the critters
+		
+		SetDlgItemText(m_hWndHost, IDC_EDIT1, _T("hitpoints1"));
+		SetDlgItemText(m_hWndHost, IDC_EDIT2, _T("hitpoints1"));
+		SetDlgItemText(m_hWndHost, IDC_EDIT3, _T("hitpoints1"));
+		SetDlgItemText(m_hWndHost, IDC_EDIT4, _T("hitpoints1"));
+		SetDlgItemText(m_hWndHost, IDC_EDIT5, _T("hitpoints1"));
+		
+	}
 
-void CMapDoc::Serialize(CArchive& ar)
+}
+
+void CTowerDefenseDoc::CallDisplayCritter(int x, int y)
+{
+	POSITION pos = GetFirstViewPosition(); 
+	CTowerDefenseView* pFirstView = (CTowerDefenseView*)GetNextView(pos);
+	pFirstView->DisplayCritter(x,y);
+}
+
+// CTowerDefenseDoc serialization
+
+void CTowerDefenseDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
@@ -165,7 +158,7 @@ void CMapDoc::Serialize(CArchive& ar)
 			}
 
 		POSITION pos = GetFirstViewPosition(); 
-		CMapView* pFirstView = (CMapView*)GetNextView(pos);
+		CTowerDefenseView* pFirstView = (CTowerDefenseView*)GetNextView(pos);
 		pFirstView->ClearGrid();
 	}
 }
@@ -173,7 +166,7 @@ void CMapDoc::Serialize(CArchive& ar)
 #ifdef SHARED_HANDLERS
 
 // Support for thumbnails
-void CMapDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
+void CTowerDefenseDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 {
 	// Modify this code to draw the document's data
 	dc.FillSolidRect(lprcBounds, RGB(255, 255, 255));
@@ -194,7 +187,7 @@ void CMapDoc::OnDrawThumbnail(CDC& dc, LPRECT lprcBounds)
 }
 
 // Support for Search Handlers
-void CMapDoc::InitializeSearchContent()
+void CTowerDefenseDoc::InitializeSearchContent()
 {
 	CString strSearchContent;
 	// Set search contents from document's data. 
@@ -204,7 +197,7 @@ void CMapDoc::InitializeSearchContent()
 	SetSearchContent(strSearchContent);
 }
 
-void CMapDoc::SetSearchContent(const CString& value)
+void CTowerDefenseDoc::SetSearchContent(const CString& value)
 {
 	if (value.IsEmpty())
 	{
@@ -224,22 +217,19 @@ void CMapDoc::SetSearchContent(const CString& value)
 
 #endif // SHARED_HANDLERS
 
-// CMapDoc diagnostics
+// CTowerDefenseDoc diagnostics
 
 #ifdef _DEBUG
-void CMapDoc::AssertValid() const
+void CTowerDefenseDoc::AssertValid() const
 {
 	CDocument::AssertValid();
 }
 
-void CMapDoc::Dump(CDumpContext& dc) const
+void CTowerDefenseDoc::Dump(CDumpContext& dc) const
 {
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
 
 
-
-
-
-// CMapDoc commands
+// CTowerDefenseDoc commands
